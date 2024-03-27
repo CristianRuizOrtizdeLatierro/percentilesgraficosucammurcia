@@ -70,7 +70,12 @@ baker = PyPizza(
 #             y=alt.Y('gross:Q', title='Gross earnings ($)'),
 #             color='genre:N'
 #             ).properties(height=320)
+
 # plot pizza
+fig0, ax0 = plt.subplots()
+linea = ax0.plot([1, 2, 3], [1, 2, 3], label='Línea')[0]
+zorder = linea.get_zorder()
+        
 fig, ax = baker.make_pizza(
     values,                          # list of values
     figsize=(10, 11),                # adjust figsize according to your need
@@ -80,8 +85,8 @@ fig, ax = baker.make_pizza(
     value_bck_colors=slice_colors,   # color for the blank spaces
     blank_alpha=0.4,                 # alpha for blank-space colors
     kwargs_slices=dict(
-        edgecolor="#F2F2F2", linewidth=1
-    ),                               # values to be used when plotting slices
+    edgecolor="#F2F2F2", zorder = zorder, linewidth=1
+),                               # values to be used when plotting slices
     kwargs_params=dict(
         color="#000000", fontsize=11,
         #fontproperties=robotto_regular.prop, va="center"
